@@ -15,7 +15,8 @@ def get_sp500_tickers():
     tickers = []
     for row in table.findAll("tr")[1:]:
         ticker = row.findAll("td")[0].text
-        ticker = ticker[:-1]  # Scraping from wikipedia returns 'MMM/n' to the pickle file.
+        # Scraping from wikipedia returns 'MMM/n' to the pickle file.
+        ticker = ticker[:-1]
         tickers.append(ticker)
 
     with open("sp500tickers.pickle", "wb") as f:
@@ -46,6 +47,3 @@ def get_yahoo_data(reload_sp500=False):
                 print("Unable to get {}".format(ticker))
         else:
             print("Already have {}".format(ticker))
-
-
-get_yahoo_data(True)
